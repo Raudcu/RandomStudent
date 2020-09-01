@@ -25,7 +25,7 @@ source.exclude_exts = spec
 source.exclude_dirs = tests, bin, venv, .git, .vscode, .buildozer
 
 # (list) List of exclusions using pattern matching
-source.exclude_patterns = LICENSE, README.md, .gitignore
+source.exclude_patterns = LICENSE, README.md, .gitignore, screenshot.png
 
 # (str) Application versioning (method 1)
 version = 0.1.0
