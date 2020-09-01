@@ -8,4 +8,4 @@ Minimal kivy app to choose a random person from a group with less chance every t
 
 # Building the apk 
 
-Use [Buildozer](https://github.com/kivy/buildozer) to build the apk. I recommen using the [Docker image](https://github.com/kivy/buildozer).
+Use [Buildozer](https://github.com/kivy/buildozer) to build the apk. I recommend using its [Docker image](https://github.com/kivy/buildozer).
