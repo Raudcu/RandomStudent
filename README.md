@@ -2,7 +2,9 @@
 
 Minimal kivy app to choose a random person from a group with less chance every time.
 
-![Screenshot](https://github.com/Raudcu/RandomStudent/blob/master/screenshot.png =x100)
+<p align="center">
+  <img src="https://github.com/Raudcu/RandomStudent/blob/master/screenshot.png" width=30% height=30%>
+</p>
 
 # Building the apk 
 
