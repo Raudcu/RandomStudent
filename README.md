@@ -6,6 +6,10 @@ Minimal kivy app to choose a random person from a group with less chance every t
   <img src="https://github.com/Raudcu/RandomStudent/blob/master/screenshot.png" width=30% height=30%>
 </p>
 
+# Requirements
+`python >= 3.6`  
+`kivy >= 1.10`
+
 # Building the apk 
 
 Use [Buildozer](https://github.com/kivy/buildozer) to build the apk. I recommend using its [Docker image](https://github.com/kivy/buildozer).
