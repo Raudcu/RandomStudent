@@ -1,0 +1,194 @@
+#:import Factory kivy.factory.Factory
+#:import Window kivy.core.window.Window
+#:import os os
+
+<MainScreen>:
+    pantalla: caja
+    
+    BoxLayout:
+        id: caja
+
+        orientation: 'vertical'
+        padding: [self.height*0.2,0]
+
+        canvas.before:
+            Color:
+                rgba: 251/255, 192/255, 93/255,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+                
+        Label:             
+            size_hint_y: 3
+
+            halign: 'center'
+            valign: 'middle'
+            
+            font_name: os.path.join(os.getcwd(),'fonts','AUBREY1.ttf')
+            font_size: 0.25*self.height
+
+            text: "Alumno\nRandom"
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            
+            RelativeLayout:
+                
+                Label:
+                    pos_hint: {'center_y': .5, 'center_x': .2}
+                    
+                    font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+                    font_size: 0.3*self.height
+                    color: 32/255, 20/255, 76/255, 1
+                    
+                    text: "Alumnos:"
+
+
+                AlignedTextInput:
+                    size_hint: None, None    
+                    width: 0.3*self.parent.width
+                    height: self.minimum_height
+                    pos_hint: {'center_y': .5, 'center_x': .8}
+                    
+                    font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+                    font_size: 0.3*self.parent.height
+                    color: 32/255, 20/255, 76/255, 1
+
+                    multiline: False
+                    halign: 'center'
+
+                    input_type: 'number'
+                    input_filter: 'int'
+
+                    text: str(root.alumnos) if not root.alumnos==0 else ''
+                
+                    on_focus: root.alumnos_text(self, self.focus)
+
+                
+            Button:
+                text: "Sortear"
+                font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+                font_size: 0.3*self.height
+
+                on_press: root.sortear()
+
+                
+        RelativeLayout:
+
+            Button:
+                size_hint: None, None    
+                width: 0.8*self.parent.width
+                height: 0.5*self.parent.height
+                pos_hint: {'y': 0, 'center_x': .5}
+                
+                text: "Resetear"
+                font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+                font_size: 0.25*self.height
+
+                on_release: Factory.ResetPopup().open()
+
+
+                
+<ResetPopup>:
+    size_hint: None, None    
+    width: 0.7*Window.width
+    height: 0.4*Window.height
+                                
+    title: "Resetear"
+    title_font: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+    title_size: 0.08*self.height
+    
+    auto_dismiss: False
+
+    
+    BoxLayout:
+        orientation: 'vertical'
+        
+        Label:
+            size_hint_y: 3
+            pos_hint: {'center_y': .5, 'center_x': .5}
+            
+            valign: 'middle'
+            haling: 'center'
+
+            text_size: self.size
+                    
+            font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+            font_size: 0.15*self.height
+
+            text: "¿Está seguro que desea restaurar todas las probabilidades?"
+
+            
+        BoxLayout:
+                
+            Button:
+                text: 'Sí'
+                font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+                font_size: 0.3*self.height
+
+                on_press: root.dismiss(); root.resetear() 
+
+        
+            Button:
+                text: 'No'
+                font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+                font_size: 0.3*self.height
+
+                on_press: root.dismiss()
+
+                
+
+<ErrorPopup@Popup>:
+    size_hint: None, None    
+    width: 0.7*Window.width
+    height: 0.4*Window.height
+                                
+    title: "Error"
+    title_font: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+    title_size: 0.08*self.height
+    
+    Label:
+        size_hint_y: 3
+        pos_hint: {'center_y': .5, 'center_x': .5}
+            
+        valign: 'middle'
+        haling: 'center'
+
+        text_size: self.size
+        
+        font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+        font_size: 0.05*self.height
+
+        text: "Debe introducir antes el número de alumnos"
+    
+
+            
+<Sorteo>:
+    orientation: 'vertical'
+
+    canvas.before:
+        Color:
+            rgba: 251/255, 192/255, 93/255,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    Label:
+        text: str(root.N)
+        font_name: os.path.join(os.getcwd(),'fonts','Sugar & Vinegar.ttf')
+        font_size: 0.5*self.height
+        size_hint_y: 5
+        
+    Button:
+        text: 'Aceptar'
+        font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+        font_size: 0.3*self.height
+        on_press: root.aceptar(); root.parent.close()
+        
+    Button:
+        text: 'Rechazar'
+        font_name: os.path.join(os.getcwd(),'fonts','Blokletters-Balpen.ttf')
+        font_size: 0.3*self.height
+        on_press: root.parent.close()
